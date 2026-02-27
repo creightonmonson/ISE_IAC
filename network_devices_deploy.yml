@@ -1,0 +1,15 @@
+---
+- name: Network Device Onboarding
+  hosts: ise_hosts
+  gather_facts: false
+  # collections:
+  #   - cisco.ise
+  # module_defaults:
+  #   group/cisco.ise.all:
+  #     ise_hostname: "{{ ise_hostname }}"
+  #     ise_username: "{{ ise_username }}"
+  #     ise_password: "{{ ise_password }}"
+  #     ise_verify: "{{ ise_verify }}"
+
+  roles:
+    - network_devices

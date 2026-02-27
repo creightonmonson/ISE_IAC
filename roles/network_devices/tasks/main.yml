@@ -1,0 +1,25 @@
+---
+- name: Onboard Network Device
+  cisco.ise.networkdevice:
+    ise_hostname: "{{ ise_hostname }}"
+    ise_username: "{{ ise_username }}"
+    ise_password: "{{ ise_password }}"
+    ise_verify: "{{ ise_verify }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    NetworkDeviceIPList:
+      - ipaddress: "{{ item.ip_address }}"
+        mask: "{{ item.mask }}"
+    NetworkDeviceGroupList:
+      - "Location#All Locations#{{ item.location }}"
+      - "Device Type#All Device Types#{{ item.device_type }}"
+    authenticationSettings:
+      radiusSharedSecret: "{{ item.shared_secret }}"
+    state: "{{ item.state }}"
+  delegate_to: localhost
+  loop: "{{ network_devices }}"
+  when: network_devices is defined
+  register: result
+  retries: "{{ loop_retries }}"
+  delay: "{{ retry_delay }}"
+  until: result is not failed

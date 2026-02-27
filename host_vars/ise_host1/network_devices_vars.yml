@@ -1,0 +1,28 @@
+---
+network_devices:
+  - name: "Demo_Switch_1"
+    description: "Provisioned by Ansible"
+    ip_address: "10.1.254.102"
+    mask: 32
+    shared_secret: "ISEisC00L"
+    location: "Minnesota"
+    device_type: "Switches"
+    state: "present"
+
+  - name: "Demo_Switch_2"
+    description: "Provisioned by Ansible"
+    ip_address: "10.1.254.103"
+    mask: 32
+    shared_secret: "ISEisC00L"
+    location: "Minnesota"
+    device_type: "Switches"
+    state: "present"
+
+  - name: "Demo_Switch_3"
+    description: "Provisioned by Ansible"
+    ip_address: "10.1.254.104"
+    mask: 32
+    shared_secret: "ISEisC00L"
+    location: "Minnesota"
+    device_type: "Switches"
+    state: "present"

@@ -1,0 +1,10 @@
+---
+ansible_connection: local
+
+ise_hostname: "{{ ansible_host }}"
+ise_username: "ansible"
+ise_password: 'C1sco12345!'
+ise_verify: false
+
+loop_retries: 3
+retry_delay: 3
