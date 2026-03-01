@@ -1,0 +1,41 @@
+---
+- name: Define Downloadable ACL 
+  cisco.ise.downloadableacl:
+    ise_hostname: "{{ ise_hostname }}"
+    ise_username: "{{ ise_username }}"
+    ise_password: "{{ ise_password }}"
+    ise_verify: "{{ ise_verify }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    dacl: "{{ item.content }}"
+    daclType: "IPV4"
+    state: "{{ item.state }}"
+  delegate_to: localhost
+  loop: "{{ ise_dacls }}"
+  when: ise_dacls is defined
+  register: result
+  retries: "{{ loop_retries }}"
+  delay: "{{ retry_delay }}"
+  until: result is not failed
+
+- name: Define Authorization Profiles
+  cisco.ise.authorizationprofile:
+    ise_hostname: "{{ ise_hostname }}"
+    ise_username: "{{ ise_username }}"
+    ise_password: "{{ ise_password }}"
+    ise_verify: "{{ ise_verify }}"
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    accessType: "{{ item.access_type }}"
+    daclName: "{{ item.dacl }}"
+    vlan:
+      nameID: "{{ item.vlan_id }}"
+      tagID: "1"
+    state: "{{ item.state }}"
+  delegate_to: localhost
+  loop: "{{ auth_profiles }}"
+  when: auth_profiles is defined
+  register: result
+  retries: "{{ loop_retries }}"
+  delay: "{{ retry_delay }}"
+  until: result is not failed

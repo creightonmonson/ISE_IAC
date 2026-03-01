@@ -1,0 +1,7 @@
+---
+- name: Network Device Onboarding
+  hosts: ise_hosts
+  gather_facts: false
+
+  roles:
+    - authorization_policies
