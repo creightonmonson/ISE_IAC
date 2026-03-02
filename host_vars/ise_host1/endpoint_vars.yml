@@ -1,0 +1,22 @@
+---
+business_assets:
+  - mac: "00:50:56:87:22:11"
+    name: "Finance_Printer_01"
+    attributes:
+      Asset_ID: "FIN-9901"
+      Security_Scan_Status: "Passed"
+      Owner: "Finance_Dept"
+
+  - mac: "00:00:aa:bb:cc:dd"
+    name: "Marketing_Printer_02"
+    attributes:
+      Asset_ID: "MKT-4402"
+      Security_Scan_Status: "Passed"
+      Owner: "Marketing_Dept"
+
+  - mac: "00:09:18:aa:bb:cc"
+    name: "Entry_Camera_01"
+    attributes:
+      Asset_ID: "SEC-1001"
+      Security_Scan_Status: "Passed"
+      Owner: "Security_Team"

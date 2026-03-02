@@ -2,7 +2,7 @@
 ## CREATE dACLS ##
 ise_dacls:
   - name: "GUEST_ONLY"
-    description: "Downloadable ACL for GUEST access - created by Ansible"
+    description: "Downloadable ACL for GUEST access - managed by Ansible"
     content: |
       permit icmp any any
       permit udp any any eq domain
@@ -12,7 +12,7 @@ ise_dacls:
     state: "present"
 
   - name: "IOT_RESTRICTED"
-    description: "Downloadable ACL for restricted IOT devices - created by Ansible"
+    description: "Downloadable ACL for restricted IOT devices - managed by Ansible"
     content: |
       permit udp any any eq bootps
       permit udp any any eq domain
@@ -22,14 +22,14 @@ ise_dacls:
 ## CREATE Authorization Policies ##
 auth_profiles:
   - name: "GUEST_ACCESS"
-    description: "Authorization Profile for GUEST access - created by Ansible"
+    description: "Authorization Profile for GUEST access - managed by Ansible"
     access_type: "ACCESS_ACCEPT"
     dacl: "GUEST_ONLY"
     vlan_id: "1001"
     state: "present"
 
   - name: "IOT_ACCESS"
-    description: "Authorization Profile for IOT devices - created by Ansible "
+    description: "Authorization Profile for IOT devices - managed by Ansible "
     access_type: "ACCESS_ACCEPT"
     dacl: "IOT_RESTRICTED"
     vlan_id: "1002"

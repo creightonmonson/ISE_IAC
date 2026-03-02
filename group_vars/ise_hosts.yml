@@ -5,6 +5,7 @@ ise_hostname: "{{ ansible_host }}"
 ise_username: "ansible"
 ise_password: 'C1sco12345!'
 ise_verify: false
+ise_version: "3.4"
 
 loop_retries: 3
 retry_delay: 3

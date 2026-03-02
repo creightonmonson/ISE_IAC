@@ -14,8 +14,8 @@ By leveraging the `cisco.ise` Ansible collection, we treat our security policy, 
 This project showcases three high-value automation pillars in under 5 minutes:
 
 1.  **Network Device Onboarding:** Zero-touch provisioning of switches and routers into the ISE inventory with correct Location and Device Type categorization.
-2.  **Identity Micro-segmentation (SGTs):** Defining Scalable Group Tags (TrustSec) as code, allowing for identity-based policy without reliance on IP addresses.
-3.  **Policy & Authorization Profiles:** Building Downloadable ACLs (dACLs) and binding them to Authorization Profiles, creating a "set-and-forget" security posture.
+2.  **Policy & Authorization Profiles:** Building Downloadable ACLs (dACLs) and binding them to Authorization Profiles, creating a "set-and-forget" security posture.
+3.  **Endpoint Management with Business Metadata using OpenAPI:** Bridge the gap between the Security Operations Center (SOC) and the Network by injecting business metadata directly into ISE 3.4/3.5 via OpenAPI.
 
 ---
 
@@ -33,11 +33,11 @@ The repo follows an **modular design**, separating configuration data from the a
 │   └── ise_host1           # host and role specifc variables
 │       └── network_device_variables.yml 
 │       └── authorization_policy_variables.yml
-│       └── security_group_tag_variables.yml
+│       └── enpoint_vars.yml
 └── roles/
     ├── network_devices/    # Use Case 1: Infrastructure Onboarding
     │   └── tasks/main.yml
-    ├── security_groups/    # Use Case 2: Identity (SGTs)
+    ├── endpoints/          # Use Case 2: Identity (SGTs)
     │   └── tasks/main.yml
     └── auth_profiles/      # Use Case 3: Policy (dACLs/profiles)
         └── tasks/main.yml

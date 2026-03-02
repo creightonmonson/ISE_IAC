@@ -1,0 +1,29 @@
+---
+- name: Create Endpoints with Custom Attributes via OpenAPI
+  ansible.builtin.uri:
+    url: "https://{{ ise_hostname }}/api/v1/endpoint"
+    method: POST
+    user: "{{ ise_username }}"
+    password: "{{ ise_password }}"
+    force_basic_auth: yes
+    validate_certs: no
+    status_code: [201, 409]
+    body_format: json
+    body:
+      assetName: "{{ item.name }}"
+      mac: "{{ item.mac }}"
+      # Highlight: Injecting Custom Attributes via OpenAPI
+      customAttributes:
+        Asset_ID: "{{ item.attributes.Asset_ID }}"
+        Security_Scan_Status: "{{ item.attributes.Security_Scan_Status }}"
+        Owner: "{{ item.attributes.Owner }}"
+    headers:
+      Accept: "application/json"
+      Content-Type: "application/json"
+  delegate_to: localhost
+  loop: "{{ business_assets }}"
+  when: business_assets is defined
+  register: result
+  retries: "{{ loop_retries }}"
+  delay: "{{ retry_delay }}"
+  until: result is not failed

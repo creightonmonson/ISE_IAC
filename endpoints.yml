@@ -1,0 +1,7 @@
+---
+- name: Endpoint Deployment with Context
+  hosts: ise_hosts
+  gather_facts: false
+
+  roles:
+    - endpoints
