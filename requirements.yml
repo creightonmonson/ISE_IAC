@@ -1,0 +1,4 @@
+---
+collections:
+  - name: cisco.ise
+  - name: ansible.netcommon
