@@ -31,9 +31,9 @@ The repo follows an **modular design**, separating configuration data from the a
 │   └── ise_hosts.yml       # Credential management 
 ├── host_vars/
 │   └── ise_host1           # host and role specifc variables
-│       └── network_device_variables.yml 
-│       └── authorization_policy_variables.yml
-│       └── enpoint_vars.yml
+│       └── network_device_vars.yml 
+│       └── authorization_profile_vars.yml
+│       └── endpoint_vars.yml
 └── roles/
     ├── network_devices/    # Use Case 1: Infrastructure Onboarding
     │   └── tasks/main.yml
