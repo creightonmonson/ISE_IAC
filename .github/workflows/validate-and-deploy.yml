@@ -1,0 +1,54 @@
+name: Validate and Trigger ISE Deployment
+on: [push, pull_request]
+
+jobs:
+  # STEP 1: Linting - Ensuring the YAML is high quality
+  ansible-lint:
+    name: Ansible Lint
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main
+        with:
+          setup_python: "true"
+          requirements_file: "ansible-lint-requirements.yml"
+
+  # STEP 2: Dry Run - Testing logic against the ISE OpenAPI
+  ansible-dry-run:
+    name: ISE Dry Run (Check Mode)
+    runs-on: self-hosted
+    needs: ansible-lint
+    # Using a container that has our ISE collections
+    container: cmons/cisco-ise-ee
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ansible playbook dry-run
+        run: |
+          ansible --version
+          ansible-playbook ISE_deploy.yml -i ISE_hosts.yml --check
+
+# fix permissions
+  fix-permissions:
+    name: fix permissions after Docker run
+    runs-on: self-hosted
+    needs: ansible-dry-run
+    steps:
+      - name: Correct permissions on runner
+        run: |
+          sudo chown -R $USER:$USER ${{ github.workspace }}
+
+
+#   # STEP 3: Trigger AWX - The "Hand-off" to the production orchestrator
+#   trigger-awx:
+#     name: Trigger AWX Workflow
+#     runs-on: self-hosted
+#     needs: ansible-dry-run
+#     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#     steps:
+#       - name: Call AWX Webhook
+#         run: |
+#           curl -X POST ${{ secrets.AWX_WEBHOOK_URL }} \
+#                -H "Content-Type: application/json" \
+#                -d '{"extra_vars": {"git_commit": "${{ github.sha }}"}}' \
+#                -k # Using -k because lab ISE/AWX often use self-signed certs

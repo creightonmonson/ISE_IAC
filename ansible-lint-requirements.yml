@@ -1,0 +1,6 @@
+---
+# This is used during the ansible-lint process
+collections:
+  - community.general
+  - cisco.ise
+  - ansible.netcommon

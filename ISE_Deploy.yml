@@ -1,0 +1,9 @@
+---
+- name: Deploy Network devices
+  ansible.builtin.import_playbook: network_devices_deploy.yml
+
+- name: Deploy Authorization Profiles
+  ansible.builtin.import_playbook: authorization_profile_deploy.yml
+
+- name: Deploy Endpoints
+  ansible.builtin.import_playbook: endpoints.yml
