@@ -23,7 +23,7 @@
   delegate_to: localhost
   loop: "{{ business_assets }}"
   when: business_assets is defined
-  register: endpoint_result
+  register: endpoints_result
   retries: "{{ loop_retries }}"
   delay: "{{ retry_delay }}"
-  until: endpoint_result is not failed
+  until: endpoints_result is not failed
