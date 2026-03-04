@@ -15,7 +15,7 @@ This project showcases three high-value automation pillars in under 5 minutes:
 
 1.  **Network Device Onboarding:** Zero-touch provisioning of switches and routers into the ISE inventory with correct Location and Device Type categorization.
 2.  **Policy & Authorization Profiles:** Building Downloadable ACLs (dACLs) and binding them to Authorization Profiles, creating a "set-and-forget" security posture.
-3.  **Endpoint Management with Business Metadata using OpenAPI:** Bridge the gap between the Security Operations Center (SOC) and the Network by injecting business metadata directly into ISE 3.4/3.5 via OpenAPI.
+3.  **Endpoint Management with Business Metadata using OpenAPI:** Bridge the gap between the Security Operations Center (SOC) and the Network by injecting business metadata directly into ISE via OpenAPI.
 
 ---
 
@@ -49,10 +49,10 @@ Ensure you have the required Python SDK and Ansible collection installed on your
 
 ```bash
 pip install ciscoisesdk
-ansible-galaxy collection install cisco.ise:3.0.1 --force
+ansible-galaxy collection install cisco.ise:3.0.1
 ```
 ### 2. Configure Credentials
-Update group_vars/ise_hosts.yml with your ISE node details. Note: Ensure to have configured API settings on your ISE node and enable ERS
+Update group_vars/ise_hosts.yml with your ISE node details, and incorporate security measures like ansible-vault to protect authentication. Note: Ensure to have configured API settings on your ISE node. 
 
 ### 3. Run the Playbook
 ```bash
@@ -60,7 +60,7 @@ ansible-playbook network_devices_deploy.yml
 ```
 
 ## Why Automate ISE?
-Eliminate Human Error: Stop "fat-fingering" dACLs and shared secrets. If it's in the YAML, it's in the network.
+Eliminate Human Error: Control the intent of the security posture through defined variables and remove the risk of "fat-fingering" an ACL or IP. If it's in the YAML, it's in the network.
 
 Auditability: Every change is tracked in Git. You know who changed a policy and why through commit history.
 
@@ -69,10 +69,10 @@ Scalability: Onboard 1 or 1,000 devices in the same amount of time.
 Infrastructure as Code: Move security away from a "black box" and into a peer-reviewed, documented workflow.
 
 ## 📈 Roadmap to CI/CD
-[x] Stage 1: Basic Task Automation (Current Demo)
+[x] Stage 1: Basic Task Automation (Current State)
 
 [ ] Stage 2: Git-based Pull Requests (Policy Peer Review)
 
 [ ] Stage 3: Automated Linting and Pre-flight checks
 
-[ ] Stage 4: Full Pipeline Integration (GitHub Workflows, MCP integration, AWX)
+[ ] Stage 4: Full Pipeline Integration (CI: GitHub Workflows, CD: Runner webhooks to AWX for project sync and template schedules)
