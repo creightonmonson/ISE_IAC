@@ -5,8 +5,8 @@
     method: POST
     user: "{{ ise_username }}"
     password: "{{ ise_password }}"
-    force_basic_auth: yes
-    validate_certs: no
+    force_basic_auth: true
+    validate_certs: false
     status_code: [201, 409]
     body_format: json
     body:
@@ -23,7 +23,7 @@
   delegate_to: localhost
   loop: "{{ business_assets }}"
   when: business_assets is defined
-  register: result
+  register: endpoint_result
   retries: "{{ loop_retries }}"
   delay: "{{ retry_delay }}"
-  until: result is not failed
+  until: endpoint_result is not failed

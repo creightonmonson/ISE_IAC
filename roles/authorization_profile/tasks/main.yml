@@ -1,5 +1,5 @@
 ---
-- name: Define Downloadable ACL 
+- name: Define Downloadable ACL
   cisco.ise.downloadableacl:
     ise_hostname: "{{ ise_hostname }}"
     ise_username: "{{ ise_username }}"
@@ -13,10 +13,10 @@
   delegate_to: localhost
   loop: "{{ ise_dacls }}"
   when: ise_dacls is defined
-  register: result
+  register: authorization_profile_result
   retries: "{{ loop_retries }}"
   delay: "{{ retry_delay }}"
-  until: result is not failed
+  until: authorization_profile_result is not failed
 
 - name: Define Authorization Profiles
   cisco.ise.authorizationprofile:
@@ -35,7 +35,7 @@
   delegate_to: localhost
   loop: "{{ auth_profiles }}"
   when: auth_profiles is defined
-  register: result
+  register: authorization_profile_result
   retries: "{{ loop_retries }}"
   delay: "{{ retry_delay }}"
-  until: result is not failed
+  until: authorization_profile_result is not failed

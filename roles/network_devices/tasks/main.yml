@@ -19,7 +19,7 @@
   delegate_to: localhost
   loop: "{{ network_devices }}"
   when: network_devices is defined
-  register: result
+  register: network_devices_result
   retries: "{{ loop_retries }}"
   delay: "{{ retry_delay }}"
-  until: result is not failed
+  until: network_devices_result is not failed
