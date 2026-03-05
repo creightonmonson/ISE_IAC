@@ -30,7 +30,7 @@ jobs:
         run: |
           ls -la
           ansible --version
-          ansible-playbook ISE_deploy.yml -i ISE_hosts.yml --check
+          ansible-playbook ISE_Deploy.yml -i ISE_hosts.yml --check
         env:
           ANSIBLE_COLLECTIONS_PATH: /usr/share/ansible/collections
 
