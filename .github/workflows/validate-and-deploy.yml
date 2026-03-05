@@ -25,8 +25,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run ansible playbook dry-run
         run: |
+          cd ${{ github.workspace }}
           ansible --version
           ansible-playbook ISE_deploy.yml -i ISE_hosts.yml --check
+        env:
+          # Ensure Ansible knows where to find the collections baked into the EE
+          ANSIBLE_COLLECTIONS_PATH: /usr/share/ansible/collections
 
 # fix permissions
   fix-permissions:
