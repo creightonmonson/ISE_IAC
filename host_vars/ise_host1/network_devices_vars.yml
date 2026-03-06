@@ -1,5 +1,4 @@
 ---
-## DEFINE NETWORK DEVICES ##
 network_devices:
   - name: "Demo_Switch_1"
     description: "Access Switch 1 - managed by Ansible"
@@ -25,5 +24,14 @@ network_devices:
     mask: 32
     shared_secret: "ISEisC00L"
     location: "Minnesota"
+    device_type: "Switches"
+    state: "present"
+
+  - name: "Demo_Switch_4"
+    description: "Access Switch 4 - managed by Ansible"
+    ip_address: "10.1.254.105"
+    mask: 32
+    shared_secret: "ISEisC00L"
+    location: "Iowa"
     device_type: "Switches"
     state: "present"
