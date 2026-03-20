@@ -34,4 +34,5 @@ network_devices:
     shared_secret: "ISEisC00L"
     location: "Iowa"
     device_type: "Switches"
-    state: "absent"
+    state: "present"
+
