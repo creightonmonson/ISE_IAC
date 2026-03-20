@@ -35,4 +35,3 @@ network_devices:
     location: "Iowa"
     device_type: "Switches"
     state: "present"
-
